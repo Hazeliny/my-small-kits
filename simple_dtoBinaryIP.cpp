@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dtoBinaryIP.cpp                                    :+:      :+:    :+:   */
+/*   simple_dtoBinaryIP.cpp                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: linyao <linyao@student.42barcelona.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 21:26:03 by linyao            #+#    #+#             */
-/*   Updated: 2024/12/06 21:34:06 by linyao           ###   ########.fr       */
+/*   Updated: 2024/12/06 21:27:36 by linyao           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,19 @@ std::vector<std::string> split(const std::string& str, char delimiter) {
 }
 
 std::string decimalToBinaryIP(const std::string& decimalIP) {
+/*
     std::vector<std::string> octets = split(decimalIP, '.');
     if (octets.size() != 4) {
         return "Invalid IP address format";
     }
-
+*/    
     std::ostringstream binaryIP;
+    std::string octet;
+    octet = decimalIP;
+    int octet_num = std::stoi(octet);
+    binaryIP << std::bitset<8>(octet_num);
+    std::cout << "Binary: " << binaryIP.str() << std::endl;
+/*
     for (size_t i = 0; i < octets.size(); ++i) {
         int octet;
         try {
@@ -48,7 +55,7 @@ std::string decimalToBinaryIP(const std::string& decimalIP) {
             binaryIP << ".";
         }
     }
-    
+*/
     return binaryIP.str();
 }
 
@@ -58,12 +65,13 @@ int main() {
     std::cin >> decimalIP;
     
     std::string binaryIP = decimalToBinaryIP(decimalIP);
+/*
     if (binaryIP == "Invalid IP address format" || binaryIP == "Invalid IP address range") {
         std::cerr << binaryIP << std::endl;
     } else {
         std::cout << "Binary IP address: " << binaryIP << std::endl;
     }
-
+*/
     return 0;
 }
 
